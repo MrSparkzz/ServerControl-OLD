@@ -7,4 +7,5 @@ package net.sparkzz.servercontrol.util;
  */
 public class FileManager {
 
+	//TODO: Wait until configs are implemented, or if they are at all
 }
