@@ -1,12 +1,13 @@
 package net.sparkzz.servercontrol.user;
 
-import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.Player;
 
 import java.util.UUID;
 
 /**
  * Created by Brendon on 9/24/2014.
+ *
+ * Public User API
  */
 public class User extends UserData {
 
@@ -75,6 +76,16 @@ public class User extends UserData {
 		return invsee;
 	}
 
+	public boolean isOp() {
+		//TODO: return player.isOp();
+		return false;
+	}
+
+	public boolean isPermitted(String node) {
+		//TODO: return player.hasPermission(node);
+		return false;
+	}
+
 	public int getSessionID() {
 		if (users.size() > 0) {
 			for (int i = 0; i < users.size(); i++) {
@@ -112,6 +123,10 @@ public class User extends UserData {
 					users.remove(i);
 			}
 		}
+	}
+
+	public void send(String message) {
+
 	}
 
 	public void setInvsee(boolean value) {

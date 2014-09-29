@@ -5,6 +5,8 @@ import net.sparkzz.servercontrol.util.Logger;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.event.SpongeEventHandler;
 import org.spongepowered.api.event.state.PreInitializationEvent;
+import org.spongepowered.api.event.state.ServerStartingEvent;
+import org.spongepowered.api.event.state.ServerStoppingEvent;
 import org.spongepowered.api.plugin.Plugin;
 
 /**
@@ -25,12 +27,12 @@ public class Main {
 	}
 
 	@SpongeEventHandler
-	public void onDisable() {
+	public void onDisable(ServerStoppingEvent event) {
 		logger.info(NAME + " v" + VERSION + " has been disabled");
 	}
 
 	@SpongeEventHandler
-	public void onEnable() {
+	public void onEnable(ServerStartingEvent event) {
 		logger.info(NAME + " v" + VERSION + " has been enabled");
 	}
 

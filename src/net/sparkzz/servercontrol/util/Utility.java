@@ -8,10 +8,10 @@ import org.spongepowered.api.Game;
  */
 public class Utility {
 
-	public Color color = Color.getColor();
-	public FileManager files = Main.getFileManager();
-	public Game game = Main.getGame();
-	public Logger logger = Main.getLogger();
-	public Messenger msg = Messenger.getMessenger();
-	public WorldManager world = WorldManager.getManager();
+	public static Color color = Color.getColor();
+	public static FileManager files = Main.getFileManager();
+	public static Game game = Main.getGame();
+	public static Logger logger = Main.getLogger();
+	public static Messenger msg = Messenger.getMessenger();
+	public static WorldManager world = WorldManager.getManager();
 }
