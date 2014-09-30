@@ -7,20 +7,20 @@ import net.sparkzz.servercontrol.util.Utility;
  */
 public class Event extends Utility {
 
-	public static void registerEvents() {
-		registerEvent(new AttendanceListener());
-		registerEvent(new ChatListener());
+	public static void registerListeners() {
+		registerListener(new AttendanceListener());
+		registerListener(new ChatListener());
 	}
 
-	public static void registerEvent(Object listener) {
+	public static void registerListener(Object listener) {
 		game.getEventManager().register(listener);
 	}
 
-	public static void unRegisterEvents() {
-		unRegisterEvent(null);
+	public static void unregisterListeners() {
+		unregisterListener(null); //wtf
 	}
 
-	public static void unRegisterEvent(Object object) {
-		game.getEventManager().unregister(object);
+	public static void unregisterListener(Object listener) {
+		game.getEventManager().unregister(listener);
 	}
 }
