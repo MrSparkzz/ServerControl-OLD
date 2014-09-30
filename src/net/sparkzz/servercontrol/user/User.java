@@ -26,38 +26,35 @@ public class User extends UserData {
 	}
 
 	public static User getUser(String name) {
-		if (users.size() > 0) {
-			for (int i = 0; i < users.size(); i++) {
-				User user = users.get(i);
+		for (int i = 0; i < users.size(); i++) {
+			User user = users.get(i);
 
-				if (user.getName().equalsIgnoreCase(name))
-					return user;
-			}
+			if (user.getName().equalsIgnoreCase(name))
+				return user;
 		}
+
 		return null;
 	}
 
 	public static User getUser(Player player) {
-		if (users.size() > 0) {
-			for (int i = 0; i < users.size(); i++) {
-				User user = users.get(i);
+		for (int i = 0; i < users.size(); i++) {
+			User user = users.get(i);
 
-				if (user.getPlayer() == player)
-					return user;
-			}
+			if (user.getPlayer() == player)
+				return user;
 		}
+
 		return null;
 	}
 
 	public static User getUser(UUID uuid) {
-		if (users.size() > 0) {
-			for (int i = 0; i < users.size(); i++) {
-				User user = users.get(i);
+		for (int i = 0; i < users.size(); i++) {
+			User user = users.get(i);
 
-				if (user.getUUID() == uuid)
-					return user;
-			}
+			if (user.getUUID() == uuid)
+				return user;
 		}
+
 		return null;
 	}
 
@@ -68,8 +65,7 @@ public class User extends UserData {
 	}
 
 	public boolean hasLastMSG() {
-		if (lastMSG != null) return true;
-		else return false;
+		return lastMSG != null;
 	}
 
 	public boolean isInvsee() {
@@ -87,14 +83,13 @@ public class User extends UserData {
 	}
 
 	public int getSessionID() {
-		if (users.size() > 0) {
-			for (int i = 0; i < users.size(); i++) {
-				User user = users.get(i);
+		for (int i = 0; i < users.size(); i++) {
+			User user = users.get(i);
 
-				if (user == this)
-					return i += 1;
-			}
+			if (user == this)
+				return i += 1;
 		}
+
 		return -1;
 	}
 
@@ -115,17 +110,15 @@ public class User extends UserData {
 	}
 
 	public void deleteUser() {
-		if (users.size() > 0) {
-			for (int i = 0; i < users.size(); i++) {
-				User user = users.get(i);
+		for (int i = 0; i < users.size(); i++) {
+			User user = users.get(i);
 
-				if (user == this)
-					users.remove(i);
-			}
+			if (user == this)
+				users.remove(i);
 		}
 	}
 
-	public void send(String message) {
+	public void send(String message) { //TODO implement?
 
 	}
 
