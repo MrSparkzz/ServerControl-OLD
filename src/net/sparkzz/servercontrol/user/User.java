@@ -12,15 +12,15 @@ import java.util.UUID;
 public class User extends UserData {
 
 	private boolean invsee = false;
-	private Player player;
-	private String name, nickname;
-	private User lastMSG;
-	private UUID uuid;
+	private Player player = null;
+	private String name = null, nickname = null;
+	private User lastMSG = null;
+	private UUID uuid = null;
 
 	public User(Player player) {
 		this.player = player;
 		name = player.getName();
-		uuid = player.getUniqueID();
+		uuid = player.getUniqueId();
 
 		users.add(this);
 	}

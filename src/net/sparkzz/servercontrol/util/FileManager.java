@@ -1,7 +1,7 @@
 package net.sparkzz.servercontrol.util;
 
 /**
- * Created by Brendon on 9/24/2014.
+ * @author Brendon
  *
  * Public File Management API
  */

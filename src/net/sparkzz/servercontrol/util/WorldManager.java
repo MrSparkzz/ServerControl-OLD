@@ -5,7 +5,7 @@ import org.spongepowered.api.world.World;
 import java.io.File;
 
 /**
- * Created by Brendon on 9/25/2014.
+ * @author Brendon
  */
 public class WorldManager extends Utility {
 

@@ -3,7 +3,7 @@ package net.sparkzz.servercontrol.util;
 import java.util.logging.Level;
 
 /**
- * Created by Brendon on 9/24/2014.
+ * @author Brendon
  *
  * Public Logger API
  */

@@ -10,7 +10,7 @@ import org.spongepowered.api.event.state.ServerStoppingEvent;
 import org.spongepowered.api.plugin.Plugin;
 
 /**
- * Created by Brendon on 9/24/2014.
+ * @author Brendon
  */
 @Plugin(id = "ServerControl", name = this.NAME, version = this.VERSION)
 public class Main {

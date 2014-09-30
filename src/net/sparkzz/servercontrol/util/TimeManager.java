@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Brendon on 9/25/2014.
+ * @author Brendon
  */
 public class TimeManager {
 

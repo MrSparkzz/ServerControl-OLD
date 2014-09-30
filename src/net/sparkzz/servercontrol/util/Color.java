@@ -1,7 +1,7 @@
 package net.sparkzz.servercontrol.util;
 
 /**
- * Created by Brendon on 9/25/2014.
+ * @author Brendon
  *
  * Public Color API
  */

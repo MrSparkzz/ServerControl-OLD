@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Brendon on 9/24/2014.
+ * @author Brendon
  */
 public class UserData {
 

@@ -4,7 +4,7 @@ import net.sparkzz.servercontrol.Main;
 import org.spongepowered.api.Game;
 
 /**
- * Created by Brendon on 9/25/2014.
+ * @author Brendon
  */
 public class Utility {
 
