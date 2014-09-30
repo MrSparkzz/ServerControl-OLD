@@ -5,23 +5,22 @@ import org.spongepowered.api.entity.Player;
 import java.util.UUID;
 
 /**
- * Created by Brendon on 9/24/2014.
+ * @author Brendon
  *
  * Public User API
  */
 public class User extends UserData {
 
 	private boolean invsee = false;
-	private Player player;
-	private String name, nickname;
-	private User lastMSG;
-	private UUID uuid;
+	private Player player = null;
+	private String name = null, nickname = null;
+	private User lastMSG = null;
+	private UUID uuid = null;
 
 	public User(Player player) {
 		this.player = player;
 		name = player.getName();
 		uuid = player.getUniqueID();
-
 		users.add(this);
 	}
 
@@ -29,7 +28,6 @@ public class User extends UserData {
 		if (users.size() > 0) {
 			for (int i = 0; i < users.size(); i++) {
 				User user = users.get(i);
-
 				if (user.getName().equalsIgnoreCase(name))
 					return user;
 			}
