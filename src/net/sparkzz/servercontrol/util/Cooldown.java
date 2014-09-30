@@ -19,8 +19,7 @@ public class Cooldown extends TimeManager {
 	}
 
 	public static Cooldown getCooldown(String cooldown) {
-		if (cooldowns.containsKey(cooldown)) return cooldowns.get(cooldown);
-		return null;
+		return cooldowns.get(cooldown);
 	}
 
 	public boolean isCoolingDown(User user) {
