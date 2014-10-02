@@ -13,4 +13,8 @@ public class TimeManager {
 	public static long currentTime() {
 		return System.currentTimeMillis();
 	}
+
+	public static void clearCooldowns() {
+		cooldowns.clear();
+	}
 }

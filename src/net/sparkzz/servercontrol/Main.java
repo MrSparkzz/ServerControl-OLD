@@ -1,7 +1,9 @@
 package net.sparkzz.servercontrol;
 
+import net.sparkzz.servercontrol.user.User;
 import net.sparkzz.servercontrol.util.FileManager;
 import net.sparkzz.servercontrol.util.Logger;
+import net.sparkzz.servercontrol.util.TimeManager;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.event.SpongeEventHandler;
 import org.spongepowered.api.event.state.PreInitializationEvent;
@@ -28,11 +30,16 @@ public class Main {
 
 	@SpongeEventHandler
 	public void onDisable(ServerStoppingEvent event) {
+		User.clearUsers();
+		TimeManager.clearCooldowns();
+
 		logger.info(NAME + " v" + VERSION + " has been disabled");
 	}
 
 	@SpongeEventHandler
 	public void onEnable(ServerStartingEvent event) {
+		User.rebuild();
+
 		logger.info(NAME + " v" + VERSION + " has been enabled");
 	}
 

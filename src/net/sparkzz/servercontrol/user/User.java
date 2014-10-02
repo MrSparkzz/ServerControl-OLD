@@ -12,14 +12,13 @@ import java.util.UUID;
 public class User extends UserData {
 
 	private boolean invsee = false;
-	private Player player = null;
-	private String name = null, nickname = null;
-	private User lastMSG = null;
-	private UUID uuid = null;
+	private Player player;
+	private String nickname;
+	private User lastConversed;
+	private UUID uuid;
 
 	public User(Player player) {
 		this.player = player;
-		name = player.getName();
 		uuid = player.getUniqueId();
 
 		users.add(this);
@@ -58,25 +57,38 @@ public class User extends UserData {
 		return null;
 	}
 
+	public static void clearUsers() {
+		users.clear();
+	}
+
+	public static void deleteUser(User user) {
+		if (users.contains(user))
+			users.remove(user);
+	}
+
 	public static void rebuild() {
+		users.clear();
+
 		for (Player player : game.getOnlinePlayers()) {
 			new User(player);
 		}
 	}
 
 	public boolean hasLastMSG() {
-		return lastMSG != null;
+		return lastConversed != null;
 	}
 
 	public boolean isInvsee() {
 		return invsee;
 	}
 
+	@Deprecated
 	public boolean isOp() {
 		//TODO: return player.isOp();
 		return false;
 	}
 
+	@Deprecated
 	public boolean isPermitted(String node) {
 		//TODO: return player.hasPermission(node);
 		return false;
@@ -86,7 +98,7 @@ public class User extends UserData {
 		for (int i = 0; i < users.size(); i++) {
 			User user = users.get(i);
 
-			if (user == this)
+			if (user == User.getUser(user.getUUID()))
 				return i += 1;
 		}
 
@@ -97,40 +109,35 @@ public class User extends UserData {
 		return player;
 	}
 
+	public String getNickname() {
+		return nickname;
+	}
+
 	public User getLastMSG() {
-		return lastMSG;
+		return lastConversed;
 	}
 
 	public String getName() {
-		return name;
+		return player.getName();
 	}
 
 	public UUID getUUID() {
 		return uuid;
 	}
 
-	public void deleteUser() {
-		for (int i = 0; i < users.size(); i++) {
-			User user = users.get(i);
-
-			if (user == this)
-				users.remove(i);
-		}
-	}
-
-	public void send(String message) { //TODO implement?
-
+	public void send(String message) {
+		// TODO: Implement message sending
 	}
 
 	public void setInvsee(boolean value) {
 		invsee = value;
 	}
 
-	public void setLastMSG(User user) {
-		lastMSG = user;
+	public void setLastConversed(User user) {
+		lastConversed = user;
 	}
 
-	public void setLastMSG(Player player) {
-		lastMSG = getUser(player);
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 }

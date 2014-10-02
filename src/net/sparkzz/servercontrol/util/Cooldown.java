@@ -32,16 +32,13 @@ public class Cooldown extends TimeManager {
 	}
 
 	public int getTimeRemaining(User user) {
+		if (!cooldown.containsKey(user)) return -1;
 		int remaining = (int) ((cooldown.get(user)) - currentTime()) / 1000;
-
-		if (remaining > 0) return remaining;
-		else return 0;
+		return (remaining > 0) ? remaining : 0;
 	}
 
 	public void add(User user, int time) {
-		long future = currentTime() + (time * 1000);
-
-		cooldown.put(user, future);
+		cooldown.put(user, currentTime() + (time * 1000));
 	}
 
 	public void clear() {

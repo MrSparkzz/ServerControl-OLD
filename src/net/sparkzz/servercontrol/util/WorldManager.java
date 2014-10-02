@@ -9,6 +9,7 @@ import java.io.File;
  */
 public class WorldManager extends Utility {
 
+	private static final File WORLD_DIR = new File(""); // Folder in which the worlds are saved
 	private static WorldManager manager = new WorldManager();
 
 	public static WorldManager getManager() {
@@ -16,34 +17,23 @@ public class WorldManager extends Utility {
 	}
 
 	public boolean isWorld(String name) {
-		if (game.getWorld(name) != null) return true;
-		else return false;
+		return (game.getWorld(name) != null);
 	}
 
-	public void copyWorld(String name) {
-		//TODO: implement copying of worlds
-
-		copyWorldFiles(null, null);
+	public static boolean copyWorld(World world, String newName, boolean overwrite) {
+		return FileManager.copy(new File(WORLD_DIR, world.getName()), new File(WORLD_DIR, newName), overwrite);
 	}
 
-	public void copyWorldFiles(File source, File target) {
-		//TODO: implement file managing
+	public static boolean deleteWorld(World world) {
+		if (unloadWorld(world))
+			return FileManager.delete(new File(WORLD_DIR, world.getName()));
+		else
+			logger.warn("Could not unload world: " + world.getName() + " in order to delete it.");
+		return false;
 	}
 
-
-	public void unloadWorld(World world) {
+	public static boolean unloadWorld(World world) {
 		//TODO: implement unloading of worlds
-	}
-
-	public boolean deleteWorld(String name) {
-		if (!isWorld(name)) return false;
-
-		//TODO: implement deleting of worlds
-		return deleteWorldFiles(null);
-	}
-
-	public boolean deleteWorldFiles(File source) {
-		//TODO: implement file managing
 		return false;
 	}
 }
