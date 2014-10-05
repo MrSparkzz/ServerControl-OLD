@@ -1,6 +1,10 @@
 package net.sparkzz.servercontrol.user;
 
+import net.sparkzz.servercontrol.entity.Humanoid;
+import net.sparkzz.servercontrol.entity.traits.Conversable;
+import net.sparkzz.servercontrol.entity.traits.Permissible;
 import org.spongepowered.api.entity.Player;
+import org.spongepowered.api.world.Location;
 
 import java.util.UUID;
 
@@ -9,12 +13,13 @@ import java.util.UUID;
  *
  * Public User API
  */
-public class User extends UserData {
+public class User extends UserData implements Conversable, Humanoid, Permissible {
 
 	private boolean invsee = false;
+	private boolean visible = true;
 	private Player player;
 	private String nickname;
-	private User lastConversed;
+	private Object lastConversed;
 	private UUID uuid;
 
 	public User(Player player) {
@@ -82,6 +87,13 @@ public class User extends UserData {
 		return invsee;
 	}
 
+	public boolean isOnline() {
+		for (Player player : game.getOnlinePlayers())
+			if (player.equals(this.getPlayer()))
+				return true;
+		return false;
+	}
+
 	@Deprecated
 	public boolean isOp() {
 		//TODO: return player.isOp();
@@ -89,8 +101,33 @@ public class User extends UserData {
 	}
 
 	@Deprecated
+	@Override
 	public boolean isPermitted(String node) {
 		//TODO: return player.hasPermission(node);
+		return false;
+	}
+
+	public boolean isVisible() {
+		return visible;
+	}
+
+	@Override
+	public boolean reply(String message) {
+		if (lastConversed instanceof Console) {
+			Console target = (Console) lastConversed;
+
+			sendToConsole(message); // TODO: Ensure that in the ReplyCommand class that you format the message BEFORE sending
+			return true;
+		} else if (lastConversed instanceof User) {
+			User target = (User) lastConversed;
+
+			if (target.isOnline()) {
+				// TODO: Implement message sending
+				return true;
+			}
+		} else {
+
+		}
 		return false;
 	}
 
@@ -105,6 +142,11 @@ public class User extends UserData {
 		return -1;
 	}
 
+	@Override
+	public Location getLocation() {
+		return null; // TODO: Implement location getter
+	}
+
 	public Player getPlayer() {
 		return player;
 	}
@@ -113,7 +155,8 @@ public class User extends UserData {
 		return nickname;
 	}
 
-	public User getLastMSG() {
+	@Override
+	public Object getLastConversed() {
 		return lastConversed;
 	}
 
@@ -125,8 +168,18 @@ public class User extends UserData {
 		return uuid;
 	}
 
+	@Override
 	public void send(String message) {
 		// TODO: Implement message sending
+	}
+
+	@Override
+	public void send(User user, String message) {
+		// TODO: Implement message sending
+	}
+
+	public void sendToConsole(String message) {
+		Console.getConsole().send(message);
 	}
 
 	public void setInvsee(boolean value) {
@@ -139,5 +192,13 @@ public class User extends UserData {
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+
+	public void setVisibility(boolean value) {
+		visible = value;
+	}
+
+	public void teleport(Location location) {
+		this.getPlayer().setPosition(null); // TODO: Implement location setting
 	}
 }
