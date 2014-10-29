@@ -1,11 +1,12 @@
 package net.sparkzz.servercontrol.user;
 
-import net.sparkzz.servercontrol.entity.traits.Conversable;
+import net.sparkzz.servercontrol.entity.Source;
+import net.sparkzz.servercontrol.util.Utility;
 
 /**
  * @author Brendon
  */
-public class Console implements Conversable {
+public class Console extends Utility implements Source {
 
 	private static final Console console = new Console();
 	private User lastConversed;
@@ -14,7 +15,6 @@ public class Console implements Conversable {
 		return console;
 	}
 
-	@Override
 	public boolean reply(String message) {
 		if (lastConversed != null && lastConversed.isOnline()) {
 			// TODO: Implement message sending
@@ -26,7 +26,7 @@ public class Console implements Conversable {
 
 	@Override
 	public void send(String message) {
-		System.out.println(message);
+		logger.info("[MESSAGE] " + message);
 	}
 
 	@Override
@@ -34,8 +34,18 @@ public class Console implements Conversable {
 		// TODO: Implement message sending
 	}
 
+	@Deprecated
+	public void sendMessage(String message) {
+		send(message);
+	}
+
 	@Override
 	public Object getLastConversed() {
 		return lastConversed;
+	}
+
+	@Override
+	public boolean isPermitted(String node) {
+		return true;
 	}
 }

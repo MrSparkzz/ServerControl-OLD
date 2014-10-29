@@ -10,6 +10,7 @@ public class Event extends Utility {
 	public static void registerListeners() {
 		registerListener(new AttendanceListener());
 		registerListener(new ChatListener());
+		registerListener(new PlayerListener());
 	}
 
 	public static void registerListener(Object listener) {

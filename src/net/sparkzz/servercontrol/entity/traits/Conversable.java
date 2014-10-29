@@ -16,8 +16,6 @@ public interface Conversable {
 	 */
 	boolean reply(String message);
 
-	// TODO: Implement sending types
-
 	/*
 	 * Sends a message <i>to</i> the conversable object
 	 *

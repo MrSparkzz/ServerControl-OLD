@@ -1,8 +1,9 @@
 package net.sparkzz.servercontrol.user;
 
-import net.sparkzz.servercontrol.entity.Humanoid;
+import net.sparkzz.servercontrol.entity.Source;
 import net.sparkzz.servercontrol.entity.traits.Conversable;
 import net.sparkzz.servercontrol.entity.traits.Permissible;
+import net.sparkzz.servercontrol.entity.traits.Positionable;
 import org.spongepowered.api.entity.Player;
 import org.spongepowered.api.world.Location;
 
@@ -13,7 +14,7 @@ import java.util.UUID;
  *
  * Public User API
  */
-public class User extends UserData implements Conversable, Humanoid, Permissible {
+public class User extends UserData implements Source, Conversable, Permissible, Positionable {
 
 	private boolean invsee = false;
 	private boolean visible = true;
@@ -24,7 +25,7 @@ public class User extends UserData implements Conversable, Humanoid, Permissible
 
 	public User(Player player) {
 		this.player = player;
-		uuid = player.getUniqueId();
+		// TODO: uuid = player.getUniqueID();
 
 		users.add(this);
 	}
@@ -79,7 +80,7 @@ public class User extends UserData implements Conversable, Humanoid, Permissible
 		}
 	}
 
-	public boolean hasLastMSG() {
+	public boolean hasLastConversed() {
 		return lastConversed != null;
 	}
 
@@ -125,8 +126,6 @@ public class User extends UserData implements Conversable, Humanoid, Permissible
 				// TODO: Implement message sending
 				return true;
 			}
-		} else {
-
 		}
 		return false;
 	}
@@ -182,6 +181,12 @@ public class User extends UserData implements Conversable, Humanoid, Permissible
 		Console.getConsole().send(message);
 	}
 
+	@Deprecated
+	@Override
+	public void sendMessage(String message) {
+		send(message);
+	}
+
 	public void setInvsee(boolean value) {
 		invsee = value;
 	}
@@ -198,7 +203,8 @@ public class User extends UserData implements Conversable, Humanoid, Permissible
 		visible = value;
 	}
 
+	@Override
 	public void teleport(Location location) {
-		this.getPlayer().setPosition(null); // TODO: Implement location setting
+		this.getPlayer().setPosition(location.getPosition());
 	}
 }
